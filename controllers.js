@@ -1,14 +1,14 @@
-  toDoApp.controller('ToDoController', function() {
+  toDoApp.controller('ToDoController', ['ToDoFactory', function(ToDoFactory) {
     var self = this;
 
-    self.todos = [{text: "this sucks", completed:true},
-                  {text: "no it totally sucks", completed:false}];
+    self.todos = [];
 
     self.addToDo = function(toDoText) {
-      self.todos.push({text: toDoText, completed: false});
+      self.todos.push(new ToDoFactory(toDoText));
     };
 
     self.deleteToDo = function() {
       self.todos.splice(-1, 1);
     };
-  });
+
+  }]);
